@@ -1,0 +1,175 @@
+gcloud builds submit --tag gcr.io/your-project-id/backend-image
+gcloud container clusters create your-cluster-name
+gcloud container clusters get-credentials your-cluster-name
+kubectl apply -f kubernetes/
+
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithPhoneNumber } from "firebase/auth";
+
+const firebaseConfig = {
+  apiKey: "your-api-key",
+  authDomain: "your-auth-domain",
+  projectId: "your-project-id",
+  storageBucket: "your-storage-bucket",
+  messagingSenderId: "your-messaging-sender-id",
+  appId: "your-app-id"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+export { auth, signInWithPhoneNumber };
+
+# Example Cloud DNS configuration
+resources:
+  - name: my-dns
+    type: dns.v1.managedZone
+    properties:
+      dnsName: "example.com."
+      description: "Example DNS zone"
+# Example VPC configuration
+resources:
+  - name: my-vpc
+    type: compute.v1.network
+    properties:
+      autoCreateSubnetworks: true
+# Example VPC configuration
+resources:
+  - name: my-vpc
+    type: compute.v1.network
+    properties:
+      autoCreateSubnetworks: true
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: gcr.io/your-project-id/backend-image:latest
+        ports:
+        - containerPort: 5000
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: gcr.io/your-project-id/backend-image:latest
+        ports:
+        - containerPort: 5000
+
+import React from 'react';
+import './App.css';
+
+function App() {
+  const sendJson = async () => {
+    const response = await fetch('/api/process-json', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ key: 'value' }),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
+
+  const sendXml = async () => {
+    const xmlData = '<root><key>value</key></root>';
+    const response = await fetch('/api/process-xml', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/xml',
+      },
+      body: xmlData,
+    });
+    const data = await response.json();
+    console.log(data);
+  };
+
+  return (
+    <div className="App">
+      <button onClick={sendJson}>Send JSON</button>
+      <button onClick={sendXml}>Send XML</button>
+    </div>
+  );
+}
+
+export default App;
+
+npx create-react-app frontend
+
+Flask==2.1.1
+gunicorn==20.1.0
+
+from flask import Flask, request, jsonify
+import xml.etree.ElementTree as ET
+
+app = Flask(__name__)
+
+@app.route('/api/process-json', methods=['POST'])
+def process_json():
+    data = request.json
+    # Process the JSON data
+    response = {'message': 'JSON processed successfully', 'data': data}
+    return jsonify(response)
+
+@app.route('/api/process-xml', methods=['POST'])
+def process_xml():
+    data = request.data
+    # Parse the XML data
+    tree = ET.ElementTree(ET.fromstring(data))
+    root = tree.getroot()
+    response = {'message': 'XML processed successfully', 'root_tag': root.tag}
+    return jsonify(response)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
