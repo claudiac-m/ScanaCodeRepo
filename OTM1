@@ -1,0 +1,172 @@
+{
+  "project": {
+    "name": "AKS-based Application Architecture Threat Model",
+    "description": "Threat model for an Azure Kubernetes Service (AKS) based application architecture",
+    "attributes": [],
+    "components": [
+      {
+        "id": "1",
+        "name": "Client Apps",
+        "type": "Client",
+        "attributes": []
+      },
+      {
+        "id": "2",
+        "name": "Azure Load Balancer",
+        "type": "LoadBalancer",
+        "attributes": []
+      },
+      {
+        "id": "3",
+        "name": "Azure Pipelines",
+        "type": "CICD",
+        "attributes": []
+      },
+      {
+        "id": "4",
+        "name": "Azure Container Registry",
+        "type": "ContainerRegistry",
+        "attributes": []
+      },
+      {
+        "id": "5",
+        "name": "Helm",
+        "type": "PackageManager",
+        "attributes": []
+      },
+      {
+        "id": "6",
+        "name": "Azure Kubernetes Service (AKS)",
+        "type": "ContainerOrchestration",
+        "attributes": []
+      },
+      {
+        "id": "7",
+        "name": "Ingress",
+        "type": "API Gateway",
+        "attributes": []
+      },
+      {
+        "id": "8",
+        "name": "Backend Pods",
+        "type": "Container",
+        "attributes": []
+      },
+      {
+        "id": "9",
+        "name": "Utility Services",
+        "type": "Service",
+        "attributes": []
+      },
+      {
+        "id": "10",
+        "name": "SQL Database",
+        "type": "Database",
+        "attributes": []
+      },
+      {
+        "id": "11",
+        "name": "Azure Cosmos DB",
+        "type": "Database",
+        "attributes": []
+      },
+      {
+        "id": "12",
+        "name": "Azure Active Directory",
+        "type": "IdentityProvider",
+        "attributes": []
+      },
+      {
+        "id": "13",
+        "name": "Azure Key Vault",
+        "type": "KeyManagementService",
+        "attributes": []
+      },
+      {
+        "id": "14",
+        "name": "Azure Monitor",
+        "type": "MonitoringService",
+        "attributes": []
+      }
+    ],
+    "dataflows": [
+      {
+        "id": "df1",
+        "source": "Client Apps",
+        "destination": "Azure Load Balancer",
+        "protocol": "HTTPS",
+        "attributes": []
+      },
+      {
+        "id": "df2",
+        "source": "Azure Load Balancer",
+        "destination": "Ingress",
+        "protocol": "HTTPS",
+        "attributes": []
+      },
+      {
+        "id": "df3",
+        "source": "Ingress",
+        "destination": "Backend Pods",
+        "protocol": "HTTP",
+        "attributes": []
+      },
+      {
+        "id": "df4",
+        "source": "Backend Pods",
+        "destination": "SQL Database",
+        "protocol": "SQL",
+        "attributes": []
+      },
+      {
+        "id": "df5",
+        "source": "Backend Pods",
+        "destination": "Azure Cosmos DB",
+        "protocol": "HTTPS",
+        "attributes": []
+      },
+      {
+        "id": "df6",
+        "source": "Helm",
+        "destination": "Azure Kubernetes Service (AKS)",
+        "protocol": "HTTPS",
+        "attributes": []
+      },
+      {
+        "id": "df7",
+        "source": "Azure Pipelines",
+        "destination": "Azure Container Registry",
+        "protocol": "HTTPS",
+        "attributes": []
+      },
+      {
+        "id": "df8",
+        "source": "Azure Container Registry",
+        "destination": "Azure Kubernetes Service (AKS)",
+        "protocol": "HTTPS",
+        "attributes": []
+      },
+      {
+        "id": "df9",
+        "source": "Azure Kubernetes Service (AKS)",
+        "destination": "Azure Active Directory",
+        "protocol": "HTTPS",
+        "attributes": []
+      },
+      {
+        "id": "df10",
+        "source": "Azure Kubernetes Service (AKS)",
+        "destination": "Azure Key Vault",
+        "protocol": "HTTPS",
+        "attributes": []
+      },
+      {
+        "id": "df11",
+        "source": "Azure Kubernetes Service (AKS)",
+        "destination": "Azure Monitor",
+        "protocol": "HTTPS",
+        "attributes": []
+      }
+    ]
+  }
+}
