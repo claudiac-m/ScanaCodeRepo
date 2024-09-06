@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<otm>
+  <project>
+    <name>AWS Data Processing Architecture</name>
+    <description>Architecture diagram converted from image</description>
+    <id>1</id>
+  </project>
+  <components>
+    <component>
+      <id>1</id>
+      <name>S3 Bucket</name>
+      <type>aws_s3_bucket</type>
+      <trustZone>Ingress Data Connectors</trustZone>
+      <securityProperties>
+        <confidentiality>HIGH</confidentiality>
+        <integrity>HIGH</integrity>
+      </securityProperties>
+    </component>
+    <component>
+      <id>2</id>
+      <name>SQL Database</name>
+      <type>sql_database</type>
+      <trustZone>Ingress Data Connectors</trustZone>
+      <securityProperties>
+        <confidentiality>HIGH</confidentiality>
+        <integrity>HIGH</integrity>
+      </securityProperties>
+    </component>
+    <!-- Add more components here -->
+  </components>
+  <trustZones>
+    <trustZone>
+      <id>1</id>
+      <name>Ingress Data Connectors</name>
+      <type>aws_zone</type>
+    </trustZone>
+    <trustZone>
+      <id>2</id>
+      <name>Automated Data Analysis</name>
+      <type>aws_zone</type>
+    </trustZone>
+    <!-- Add more trust zones here -->
+  </trustZones>
+  <dataflows>
+    <dataflow>
+      <id>1</id>
+      <name>S3 to AWS Glue</name>
+      <source>1</source>
+      <destination>3</destination>
+      <protocol>HTTPS</protocol>
+      <attributes>
+        <confidentiality>HIGH</confidentiality>
+        <integrity>HIGH</integrity>
+      </attributes>
+    </dataflow>
+    <!-- Add more data flows here -->
+  </dataflows>
+</otm>
